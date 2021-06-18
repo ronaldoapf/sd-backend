@@ -1,14 +1,16 @@
 import Sequelize from 'sequelize';
 
-import Book from '../app/models/Book';
 import User from '../app/models/User';
-import VerificationToken from '../app/models/VerificationToken';
+import Subject from '../app/models/Subject';
+import Student from '../app/models/Student';
 import config from '../config/database';
+import Grade from '../app/models/Grade';
 
 const models = [
   User,
-  Book,
-  VerificationToken,
+  Grade,
+  Subject,
+  Student,
 ];
 
 class Database {

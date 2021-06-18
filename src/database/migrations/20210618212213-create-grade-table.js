@@ -1,26 +1,35 @@
 module.exports = {
-  up: async (queryInterface, Sequelize) => queryInterface.createTable('user_book', {
-    book_id: {
+  up: async (queryInterface, Sequelize) => queryInterface.createTable('student_subject', {
+    id: {
       type: Sequelize.INTEGER,
-      primaryKey: true,
+      autoIncrement: true,
       allowNull: false,
+    },
+    student_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      primaryKey: true,
       references: {
-        model: 'book',
+        model: 'student',
         key: 'id',
       },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
-    user_id: {
+    subject_id: {
       type: Sequelize.INTEGER,
-      primaryKey: true,
       allowNull: false,
+      primaryKey: true,
       references: {
-        model: 'user',
+        model: 'subject',
         key: 'id',
       },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
+    },
+    grade: {
+      type: Sequelize.FLOAT,
+      allowNull: true,
     },
     created_at: {
       type: Sequelize.DATE,
@@ -32,5 +41,5 @@ module.exports = {
     },
   }),
 
-  down: async (queryInterface) => queryInterface.dropTable('user_book'),
+  down: async (queryInterface) => queryInterface.dropTable('student_subject'),
 };

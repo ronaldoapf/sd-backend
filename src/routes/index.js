@@ -1,13 +1,16 @@
 import Router from 'express';
 
+import auth from './auth.routes';
 import user from './user.routes';
-import token from './token.routes';
-import userBooks from './user-books.routes';
+import student from './student.routes';
+import subject from './subject.routes';
 
 const router = Router();
 
+router.use('/auth', auth);
+
 router.use('/users', user);
-router.use('/user-books', userBooks);
-router.use('/token', token);
+router.use('/students', student);
+router.use('/subjects', subject);
 
 export default router;

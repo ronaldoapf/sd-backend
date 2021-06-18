@@ -5,10 +5,8 @@ class User extends Model {
   static init(sequelize) {
     super.init({
       name: Sequelize.STRING,
-      age: Sequelize.INTEGER,
       email: Sequelize.STRING,
       password: Sequelize.STRING,
-      verified: Sequelize.BOOLEAN,
     }, {
       sequelize,
       tableName: 'user',
@@ -25,9 +23,9 @@ class User extends Model {
   }
 
   static associate(models) {
-    this.belongsToMany(models.Book, {
-      through: 'user_book',
-      as: 'books',
+    this.belongsToMany(models.Subject, {
+      through: 'user_subject',
+      as: 'subjects',
     });
   }
 

@@ -1,11 +1,16 @@
 module.exports = {
-  up: async (queryInterface, Sequelize) => queryInterface.createTable('user', {
+  up: async (queryInterface, Sequelize) => queryInterface.createTable('subject', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      allowNull: false,
     },
-    name: {
+    subject_code: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    subject_name: {
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -19,5 +24,5 @@ module.exports = {
     },
   }),
 
-  down: async (queryInterface) => queryInterface.dropTable('user'),
+  down: async (queryInterface) => queryInterface.dropTable('subject'),
 };

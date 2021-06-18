@@ -14,7 +14,6 @@ class App {
   middlewares() {
     this.server.use(cors());
     this.server.use(express.json());
-    // any other global middleware here
   }
 
   routes() {
