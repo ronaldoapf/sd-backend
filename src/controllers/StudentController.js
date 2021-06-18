@@ -1,12 +1,23 @@
+import { Op } from 'sequelize';
+
 import Grade from '../app/models/Grade';
 import Student from '../app/models/Student';
 import Subject from '../app/models/Subject';
 
 class StudentController {
   async index(req, res) {
-    const { id } = req.params;
-    const student = await Student.findByPk(id, {
-      attributes: ['id', 'name'],
+    const { id, email } = req.query;
+    if (!id && !email) {
+      return res.status(400).json({ message: 'Forneça um id ou um email' });
+    }
+    const student = await Student.findOne({
+      where: {
+        [Op.or]: [
+          { id: id || null },
+          { email: id ? null : email ?? '' },
+        ],
+      },
+      attributes: ['id', 'name', 'email'],
       include: [{
         model: Grade,
         as: 'grades',
@@ -16,6 +27,9 @@ class StudentController {
         ],
       }],
     });
+
+    if (!student) return res.status(404).json({ message: 'Não encontrado.' });
+
     return res.status(200).json(student);
   }
 

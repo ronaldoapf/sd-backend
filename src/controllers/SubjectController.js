@@ -12,7 +12,7 @@ class SubjectController {
         as: 'grades',
         attributes: ['id', 'grade'],
         include: [
-          { model: Student, as: 'student', attributes: ['id', 'name'] },
+          { model: Student, as: 'student', attributes: ['id', 'name', 'email'] },
         ],
       }],
     });

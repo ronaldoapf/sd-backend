@@ -10,7 +10,7 @@ const router = Router();
 
 router.use(ensureAuth);
 
-router.get('/:id', StudentController.index);
+router.get('/find', StudentController.index);
 router.get('/', StudentController.list);
 router.post('/', validateResource(studentValidation), StudentController.store);
 
