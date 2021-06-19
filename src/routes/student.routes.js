@@ -8,9 +8,10 @@ import UserSubjectController from '../controllers/UserSubjectController';
 
 const router = Router();
 
+router.get('/find', StudentController.index);
+
 router.use(ensureAuth);
 
-router.get('/find', StudentController.index);
 router.get('/', StudentController.list);
 router.post('/', validateResource(studentValidation), StudentController.store);
 

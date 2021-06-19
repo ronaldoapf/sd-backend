@@ -34,7 +34,16 @@ class StudentController {
   }
 
   async list(_, res) {
-    const students = await Student.findAll();
+    const students = await Student.findAll({
+      include: [{
+        model: Grade,
+        as: 'grades',
+        attributes: ['grade'],
+        include: [
+          { model: Subject, as: 'subject', attributes: ['id', 'subjectName', 'subjectCode'] },
+        ],
+      }],
+    });
     return res.status(200).json(students);
   }
 
